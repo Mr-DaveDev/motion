@@ -47,7 +47,8 @@ enum USER_CODEC {
 
 struct ctx_movie {
     AVFormatContext *oc;
-    AVStream *video_st;
+    AVStream *strm_video;
+    AVStream *strm_audio;
     AVCodecContext *ctx_codec;
     AVCodec *codec;
     AVPacket pkt;
@@ -64,6 +65,12 @@ struct ctx_movie {
     const char *codec_name;
     int64_t last_pts;
     int64_t base_pts;
+    int64_t base_video_pts;
+    int64_t base_audio_pts;
+
+    int64_t base_video_dts;
+    int64_t base_audio_dts;
+
     int test_mode;
     int gop_cnt;
     struct timespec start_time;
